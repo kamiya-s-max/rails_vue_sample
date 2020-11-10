@@ -1,19 +1,7 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
-    <p>{{ desctiption }}</p>
-    <table class="contents-table">
-      <tr>
-        <th>名前</th>
-        <th>リンク</th>
-      </tr>
-      <tr v-for="outer_link in contents.outer_links" v-bind:key="outer_link.name">
-        <td>{{ outer_link.name }}</td>
-        <td>
-          <a v-bind:href="outer_link.url">{{ outer_link.text }}</a>
-        </td>
-      </tr>
-    </table>
+    <header-view v-bind:title="title" v-bind:description="description"></header-view>
+    <contents v-bind:contents="contents"></contents>
   </div>
 </template>
 
@@ -29,7 +17,14 @@
 </style>
 
 <script>
+import HeaderView from "../HeaderView.vue";
+import Contents from "./Contents.vue";
+
 export default {
+  components: {
+    "header-view": HeaderView,
+    contents : Contents
+  },
   props: {
     title: {
       type: String,
